@@ -1,0 +1,86 @@
+[
+  {
+    "condition": [{ "field": "english_test_status", "op": "==", "value": "none" }],
+    "action": { "add_steps": ["choose_english_test"] },
+    "priority": 10,
+    "notes": "No English test booked yet — has to come before exam prep can be meaningfully scheduled."
+  },
+  {
+    "condition": [
+      { "field": "english_test_status", "op": "==", "value": "booked" },
+      { "field": "english_test_type", "op": "==", "value": "OET" }
+    ],
+    "action": { "add_steps": ["oet_exam_prep"] },
+    "priority": 10,
+    "notes": null
+  },
+  {
+    "condition": [
+      { "field": "english_test_status", "op": "==", "value": "booked" },
+      { "field": "english_test_type", "op": "==", "value": "IELTS" }
+    ],
+    "action": { "add_steps": ["ielts_exam_prep"] },
+    "priority": 10,
+    "notes": null
+  },
+  {
+    "condition": [
+      { "field": "gdc_status", "op": "!=", "value": "full" },
+      { "field": "ore_status", "op": "==", "value": "not_started" }
+    ],
+    "action": { "add_steps": ["gdc_idrc_route_overview", "ore_part1_prep", "ore_part1_exam"] },
+    "priority": 20,
+    "notes": null
+  },
+  {
+    "condition": [
+      { "field": "gdc_status", "op": "!=", "value": "full" },
+      { "field": "ore_status", "op": "==", "value": "part1_failed" }
+    ],
+    "action": { "add_steps": ["gdc_idrc_route_overview", "ore_part1_resit_prep", "ore_part1_exam"] },
+    "priority": 20,
+    "notes": null
+  },
+  {
+    "condition": [
+      { "field": "gdc_status", "op": "!=", "value": "full" },
+      { "field": "ore_status", "op": "==", "value": "part1_passed" }
+    ],
+    "action": { "add_steps": ["ore_part2_prep", "ore_part2_exam"] },
+    "priority": 20,
+    "notes": null
+  },
+  {
+    "condition": [
+      { "field": "gdc_status", "op": "!=", "value": "full" },
+      { "field": "ore_status", "op": "in", "value": ["part2_passed", "exempt"] }
+    ],
+    "action": { "add_steps": ["gdc_full_registration_application"] },
+    "priority": 20,
+    "notes": null
+  },
+  {
+    "condition": [{ "field": "gdc_status", "op": "!=", "value": "full" }],
+    "action": { "add_steps": ["alt_routes_overview"] },
+    "priority": 35,
+    "notes": "Informational — shown to anyone not yet fully registered, framed as an optional parallel route, not a substitute for the main pathway."
+  },
+  {
+    "condition": [{ "field": "*", "op": "always" }],
+    "action": { "add_steps": ["uk_cv_prep"] },
+    "priority": 40,
+    "notes": "Everyone needs a UK-format CV regardless of where they are in the pathway."
+  },
+  {
+    "condition": [{ "field": "gdc_status", "op": "==", "value": "full" }],
+    "action": { "add_steps": ["job_search_dental", "interview_prep"] },
+    "priority": 50,
+    "notes": "Job search only makes sense once fully registered."
+  },
+  {
+    "condition": [{ "field": "wants_visa_sponsorship", "op": "==", "value": true }],
+    "action": { "add_steps": ["visa_overview", "skilled_worker_visa_route"] },
+    "priority": 60,
+    "notes": null
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "code": "new_grad_no_exams",
+    "label": "New graduate, just starting out",
+    "description": "Recently graduated, no GDC registration yet, hasn't started ORE. Needs the full picture from English test through to first UK job.",
+    "matching_rule_summary": "gdc_status = none AND ore_status = not_started"
+  },
+  {
+    "code": "part1_passed_pursuing_part2",
+    "label": "Mid-pathway: ORE Part 1 passed",
+    "description": "Has cleared the written exam and is preparing for the practical/clinical ORE Part 2 assessment.",
+    "matching_rule_summary": "ore_status = part1_passed"
+  },
+  {
+    "code": "exams_done_needs_registration",
+    "label": "Exams complete, finalizing registration",
+    "description": "Has passed or is exempt from ORE and needs to complete the formal GDC registration application.",
+    "matching_rule_summary": "ore_status in (part2_passed, exempt) AND gdc_status != full"
+  },
+  {
+    "code": "registered_needs_job",
+    "label": "GDC registered, focused on job search",
+    "description": "Already holds full GDC registration. Main gap is UK-format CV, job search, and interview readiness.",
+    "matching_rule_summary": "gdc_status = full"
+  },
+  {
+    "code": "wants_sponsorship",
+    "label": "Needs visa sponsorship",
+    "description": "Add-on profile across any of the above — also needs guidance on finding a sponsoring employer and the Skilled Worker visa route.",
+    "matching_rule_summary": "wants_visa_sponsorship = true"
+  }
+]
