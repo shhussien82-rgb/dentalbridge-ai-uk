@@ -27,3 +27,9 @@
 [browser] Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.
     at Button (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?16:85:263)
     at LandingPage (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?3:274:280) 
+  Reload env: .env.local
+✓ Compiled in 548ms
+ GET / 200 in 1379ms (next.js: 512ms, proxy.ts: 229ms, application-code: 638ms)
+ GET / 200 in 821ms (next.js: 17ms, proxy.ts: 270ms, application-code: 535ms)
+ GET / 200 in 392ms (next.js: 35ms, proxy.ts: 49ms, application-code: 309ms)
+ GET / 200 in 389ms (next.js: 193ms, proxy.ts: 51ms, application-code: 146ms)
