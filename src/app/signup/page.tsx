@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { GoogleSignInButton } from "@/components/google-signin-button";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -42,6 +44,12 @@ export default function SignupPage() {
           <CardTitle>Create your account</CardTitle>
         </CardHeader>
         <CardContent>
+          <GoogleSignInButton next="/questionnaire" />
+          <div className="my-4 flex items-center gap-3">
+            <Separator className="flex-1" />
+            <span className="text-xs text-muted-foreground">or</span>
+            <Separator className="flex-1" />
+          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>

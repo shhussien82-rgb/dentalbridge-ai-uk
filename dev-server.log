@@ -6,34 +6,24 @@
 - Local:         http://localhost:3000
 - Network:       http://172.20.10.2:3000
 - Environments: .env.local
-✓ Ready in 610ms
+✓ Ready in 1051ms
 
- GET / 200 in 751ms (next.js: 120ms, proxy.ts: 224ms, application-code: 407ms)
- GET / 200 in 146ms (next.js: 10ms, proxy.ts: 18ms, application-code: 117ms)
+ GET / 200 in 1822ms (next.js: 313ms, proxy.ts: 627ms, application-code: 882ms)
+ GET /login 200 in 683ms (next.js: 126ms, proxy.ts: 20ms, application-code: 537ms)
+ GET /signup 200 in 201ms (next.js: 96ms, proxy.ts: 21ms, application-code: 84ms)
+ GET / 200 in 262ms (next.js: 31ms, proxy.ts: 21ms, application-code: 210ms)
 [browser] Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.
     at Button (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?16:85:263)
     at LandingPage (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?1:259:280) 
 [browser] Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.
     at Button (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?16:85:263)
     at LandingPage (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?3:274:280) 
- GET /login 200 in 183ms (next.js: 71ms, proxy.ts: 16ms, application-code: 97ms)
- GET /signup 200 in 174ms (next.js: 87ms, proxy.ts: 49ms, application-code: 37ms)
-[browser] TypeError: Failed to fetch
-    at async handleSubmit (src/app/signup/page.tsx:23:29)
-  21 |     setLoading(true);
-  22 |     const supabase = createClient();
-> 23 |     const { data, error } = await supabase.auth.signUp({ email, password });
-     |                             ^
-  24 |     setLoading(false);
-  25 |     if (error) {
-  26 |       toast.error(error.message); (src/app/signup/page.tsx:23:29)
- GET /signup 200 in 100ms (next.js: 11ms, proxy.ts: 51ms, application-code: 38ms)
-[browser] TypeError: Failed to fetch
-    at async handleSubmit (src/app/signup/page.tsx:23:29)
-  21 |     setLoading(true);
-  22 |     const supabase = createClient();
-> 23 |     const { data, error } = await supabase.auth.signUp({ email, password });
-     |                             ^
-  24 |     setLoading(false);
-  25 |     if (error) {
-  26 |       toast.error(error.message); (src/app/signup/page.tsx:23:29)
+ GET /login 200 in 105ms (next.js: 15ms, proxy.ts: 17ms, application-code: 73ms)
+ GET /login 200 in 211ms (next.js: 12ms, proxy.ts: 95ms, application-code: 104ms)
+ GET /signup 200 in 133ms (next.js: 25ms, proxy.ts: 49ms, application-code: 59ms)
+[browser] Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.
+    at Button (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?16:85:263)
+    at LandingPage (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?1:259:280) 
+[browser] Base UI: A component that acts as a button expected a native <button> because the `nativeButton` prop is true. Rendering a non-<button> removes native button semantics, which can impact forms and accessibility. Use a real <button> in the `render` prop, or set `nativeButton` to `false`.
+    at Button (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?16:85:263)
+    at LandingPage (about://React/Server/C:%5CUsers%5Csh_as%5CDesktop%5CProjectAi%5Cdentalbridge-ai-uk%5C.next%5Cdev%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__0fu278a._.js?3:274:280) 

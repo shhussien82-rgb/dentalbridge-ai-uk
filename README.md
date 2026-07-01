@@ -20,6 +20,20 @@ with Next.js, Supabase, and the Claude API.
    - Under Authentication → Providers, email/password is enabled by default.
      For frictionless local testing, you can disable "Confirm email" under
      Authentication → Settings.
+   - **To enable "Continue with Google":**
+     1. In [Google Cloud Console](https://console.cloud.google.com/apis/credentials),
+        create an OAuth 2.0 Client ID (Web application type).
+     2. Add `https://<your-project-ref>.supabase.co/auth/v1/callback` as an
+        Authorized redirect URI (find your project ref in the Supabase
+        dashboard URL or Project Settings → General).
+     3. In Supabase, go to Authentication → Providers → Google, enable it,
+        and paste in the Google Client ID and Client Secret.
+     4. For local dev, also add `http://localhost:3000` to the Google OAuth
+        client's Authorized JavaScript origins.
+     The app's side of this is already wired up — `src/components/google-signin-button.tsx`
+     calls `supabase.auth.signInWithOAuth({ provider: "google" })`, and
+     `src/app/auth/callback/route.ts` exchanges the returned code for a
+     session. No further code changes needed once the provider is configured.
 
 2. **Get an Anthropic API key** at [platform.claude.com](https://platform.claude.com).
 
@@ -73,6 +87,8 @@ src/lib/rules-engine.ts       Deterministic profile -> pathway_steps mapping (th
 src/lib/claude.ts             Claude API call that narrates the rules-engine output (never originates facts)
 src/lib/pdf/                  @react-pdf/renderer PDF document
 src/app/                      Pages: landing, login, signup, questionnaire, results/[planId], dashboard
+src/app/auth/callback         OAuth redirect target (Google) — exchanges the code for a session
+src/components/google-signin-button.tsx   "Continue with Google" button used on login/signup
 src/app/api/generate-plan     POST: profile -> rules engine -> Claude -> saved plan
 src/app/api/plans/[id]/pdf    GET: streams the plan as a PDF
 docs/                         Phase 0 (idea validation) and Phase 4 (user testing) supporting materials
