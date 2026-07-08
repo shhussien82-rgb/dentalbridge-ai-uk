@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -37,15 +37,20 @@ export default async function ResultsPage({
       <div className="flex items-center justify-between gap-4">
         <h1 className="text-2xl font-bold">Your UK Dental Career Plan</h1>
         <div className="flex gap-2">
-          <Button render={<Link href="/dashboard" />} variant="outline" size="sm">
+          <Link
+            href="/dashboard"
+            className={buttonVariants({ variant: "outline", size: "sm" })}
+          >
             Dashboard
-          </Button>
-          <Button
-            render={<a href={`/api/plans/${plan.id}/pdf`} target="_blank" rel="noreferrer" />}
-            size="sm"
+          </Link>
+          <a
+            href={`/api/plans/${plan.id}/pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonVariants({ size: "sm" })}
           >
             Download PDF
-          </Button>
+          </a>
         </div>
       </div>
 

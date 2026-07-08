@@ -150,7 +150,7 @@ export default function QuestionnairePage() {
                     name="english_test_type"
                     control={control}
                     render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select value={field.value ?? null} onValueChange={field.onChange}>
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select test" />
                         </SelectTrigger>

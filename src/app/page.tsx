@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const STEPS = [
@@ -33,12 +33,15 @@ export default function LandingPage() {
           your first UK dental job.
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          <Button render={<Link href="/signup" />} size="lg">
+          <Link href="/signup" className={buttonVariants({ size: "lg" })}>
             Build my plan
-          </Button>
-          <Button render={<Link href="/login" />} size="lg" variant="outline">
+          </Link>
+          <Link
+            href="/login"
+            className={buttonVariants({ size: "lg", variant: "outline" })}
+          >
             Log in
-          </Button>
+          </Link>
         </div>
       </section>
 

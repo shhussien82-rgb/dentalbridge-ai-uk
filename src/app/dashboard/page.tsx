@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { GeneratedPlanRow } from "@/lib/types/database";
 import { SignOutButton } from "@/components/sign-out-button";
@@ -25,9 +25,9 @@ export default async function DashboardPage() {
           <p className="text-sm text-muted-foreground">{user?.email}</p>
         </div>
         <div className="flex gap-2">
-          <Button render={<Link href="/questionnaire" />} size="sm">
+          <Link href="/questionnaire" className={buttonVariants({ size: "sm" })}>
             New plan
-          </Button>
+          </Link>
           <SignOutButton />
         </div>
       </div>

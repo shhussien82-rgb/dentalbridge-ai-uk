@@ -82,10 +82,39 @@ function LoginForm() {
   );
 }
 
+function LoginFormSkeleton() {
+  return (
+    <Card className="w-full max-w-sm animate-pulse">
+      <CardHeader>
+        <CardTitle>Log in</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="h-8 w-full rounded-lg bg-muted" />
+        <div className="my-4 flex items-center gap-3">
+          <Separator className="flex-1" />
+          <span className="text-xs text-muted-foreground">or</span>
+          <Separator className="flex-1" />
+        </div>
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <div className="h-4 w-12 rounded bg-muted" />
+            <div className="h-9 w-full rounded-md bg-muted" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-16 rounded bg-muted" />
+            <div className="h-9 w-full rounded-md bg-muted" />
+          </div>
+          <div className="h-8 w-full rounded-lg bg-muted" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function LoginPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-20">
-      <Suspense fallback={null}>
+      <Suspense fallback={<LoginFormSkeleton />}>
         <LoginForm />
       </Suspense>
     </main>
