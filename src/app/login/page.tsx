@@ -8,8 +8,6 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { GoogleSignInButton } from "@/components/google-signin-button";
 
 function LoginForm() {
@@ -35,19 +33,24 @@ function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Log in</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <GoogleSignInButton next={next} />
-        <div className="my-4 flex items-center gap-3">
-          <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">or</span>
-          <Separator className="flex-1" />
+    <div className="w-full max-w-[420px] border border-line bg-surface p-10">
+      <div className="flex flex-col gap-2 border-b border-line pb-6">
+        <div className="text-[11px] tracking-[0.2em] text-gold uppercase">
+          Welcome back
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <div className="font-heading text-[26px] font-semibold">Log in</div>
+      </div>
+      <div className="flex flex-col gap-5 pt-6">
+        <GoogleSignInButton next={next} />
+        <div className="flex items-center gap-3.5">
+          <div className="h-px flex-1 bg-line" />
+          <span className="text-[11px] tracking-[0.14em] text-mut uppercase">
+            or
+          </span>
+          <div className="h-px flex-1 bg-line" />
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
@@ -57,7 +60,7 @@ function LoginForm() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
@@ -67,47 +70,43 @@ function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" size="form" className="w-full" disabled={loading}>
             {loading ? "Logging in..." : "Log in"}
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm text-muted-foreground">
+        <p className="text-center text-sm text-mut">
           No account yet?{" "}
-          <Link href="/signup" className="underline">
+          <Link href="/signup" className="border-b border-gold text-gold">
             Sign up
           </Link>
         </p>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
 function LoginFormSkeleton() {
   return (
-    <Card className="w-full max-w-sm animate-pulse">
-      <CardHeader>
-        <CardTitle>Log in</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-8 w-full rounded-lg bg-muted" />
-        <div className="my-4 flex items-center gap-3">
-          <Separator className="flex-1" />
-          <span className="text-xs text-muted-foreground">or</span>
-          <Separator className="flex-1" />
-        </div>
-        <div className="space-y-4">
-          <div className="space-y-2">
-            <div className="h-4 w-12 rounded bg-muted" />
-            <div className="h-9 w-full rounded-md bg-muted" />
+    <div className="w-full max-w-[420px] animate-pulse border border-line bg-surface p-10">
+      <div className="flex flex-col gap-2 border-b border-line pb-6">
+        <div className="h-3 w-24 bg-muted" />
+        <div className="h-7 w-32 bg-muted" />
+      </div>
+      <div className="flex flex-col gap-5 pt-6">
+        <div className="h-[46px] w-full bg-muted" />
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <div className="h-3 w-12 bg-muted" />
+            <div className="h-[46px] w-full bg-muted" />
           </div>
-          <div className="space-y-2">
-            <div className="h-4 w-16 rounded bg-muted" />
-            <div className="h-9 w-full rounded-md bg-muted" />
+          <div className="flex flex-col gap-2">
+            <div className="h-3 w-16 bg-muted" />
+            <div className="h-[46px] w-full bg-muted" />
           </div>
-          <div className="h-8 w-full rounded-lg bg-muted" />
+          <div className="h-12 w-full bg-muted" />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 

@@ -34,11 +34,11 @@ export function GoogleSignInButton({ next = "/dashboard" }: GoogleSignInButtonPr
     <Button
       type="button"
       variant="outline"
-      className="w-full"
+      className="h-[46px] w-full gap-2.5 text-sm font-medium tracking-normal normal-case"
       onClick={handleClick}
       disabled={loading}
     >
-      <GoogleIcon className="size-4" />
+      <GoogleIcon className="size-[17px]" />
       Continue with Google
     </Button>
   );

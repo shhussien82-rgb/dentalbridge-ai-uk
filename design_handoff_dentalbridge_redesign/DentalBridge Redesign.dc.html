@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: "Archivo", system-ui, sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: inherit; }
+    .db-root button, .db-root a { white-space: nowrap; }
+    .db-root {
+      --bg: oklch(0.17 0.008 75);
+      --surface: oklch(0.205 0.009 75);
+      --surface2: oklch(0.245 0.011 75);
+      --line: oklch(1 0 0 / 0.10);
+      --line-strong: oklch(1 0 0 / 0.18);
+      --ink: oklch(0.95 0.006 85);
+      --mut: oklch(0.70 0.014 80);
+      --gold: oklch(0.78 0.105 80);
+      --gold-ink: oklch(0.20 0.03 80);
+      --gold-soft: oklch(0.78 0.105 80 / 0.12);
+    }
+    .db-root[data-theme="light"] {
+      --bg: oklch(0.972 0.006 85);
+      --surface: oklch(0.995 0.002 90);
+      --surface2: oklch(0.948 0.008 85);
+      --line: oklch(0.88 0.012 85);
+      --line-strong: oklch(0.80 0.016 85);
+      --ink: oklch(0.24 0.014 75);
+      --mut: oklch(0.49 0.018 78);
+      --gold: oklch(0.585 0.115 75);
+      --gold-ink: oklch(0.99 0.002 90);
+      --gold-soft: oklch(0.585 0.115 75 / 0.10);
+    }
+  </style>
+</helmet>
+
+<div class="db-root" data-theme="{{ theme }}" style="min-height: 100vh; background: var(--bg); color: var(--ink); font-family: 'Archivo', system-ui, sans-serif; display: flex; flex-direction: column;">
+
+  <!-- ===== NAV ===== -->
+  <header style="border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 20;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <div onClick="{{ goLanding }}" style="display: flex; align-items: center; gap: 14px; cursor: pointer;">
+        <div style="width: 36px; height: 36px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.05em; color: var(--gold);">DB</div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.14em; color: var(--ink);">DENTALBRIDGE</div>
+          <div style="font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mut);">UK Pathway Advisory</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="#" onClick="{{ goLanding }}" style="font-size: 14px; color: var(--mut);" style-hover="color: var(--ink);">How it works</a>
+        <a href="#" onClick="{{ goLogin }}" style="font-size: 14px; color: var(--mut);" style-hover="color: var(--ink);">Log in</a>
+        <button onClick="{{ goSignup }}" style="height: 40px; padding: 0 20px; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">Begin assessment</button>
+        <button onClick="{{ toggleTheme }}" style="height: 40px; padding: 0 14px; display: flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--line-strong); color: var(--mut); font-family: 'Archivo', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;" style-hover="color: var(--ink); border-color: var(--gold);">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--gold); display: inline-block;"></span>
+          {{ themeLabel }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== LANDING ===== -->
+  <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+    <main data-screen-label="Redesign: Landing" style="flex: 1;">
+      <section style="max-width: 1200px; margin: 0 auto; padding: 96px 32px 80px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 80px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 28px;">
+          <div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 12px;">
+            <span style="width: 32px; height: 1px; background: var(--gold); display: inline-block;"></span>
+            For internationally trained dentists
+          </div>
+          <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 58px; font-weight: 600; line-height: 1.06; letter-spacing: -0.02em; text-wrap: balance;">Your UK dental career, precisely mapped.</h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.65; color: var(--mut); max-width: 520px; text-wrap: pretty;">GDC. ORE. OET. Visas. We distil the regulatory maze into one sequenced, personal roadmap — drawn from a verified knowledge base and written in plain English.</p>
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 8px;">
+            <button onClick="{{ goSignup }}" style="height: 52px; padding: 0 28px; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">Begin your assessment</button>
+            <button onClick="{{ goResults }}" style="height: 52px; padding: 0 28px; background: transparent; color: var(--ink); border: 1px solid var(--line-strong); font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="border-color: var(--gold); color: var(--gold);">View a sample roadmap</button>
+          </div>
+          <p style="margin: 8px 0 0; font-size: 13px; color: var(--mut);">Six questions. Three minutes. One roadmap.</p>
+        </div>
+
+        <div style="background: var(--surface); border: 1px solid var(--line); padding: 32px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid var(--line);">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600;">Sample engagement</div>
+            <div style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);">28–62 weeks</div>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--gold); padding-top: 2px;">01</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="font-size: 15px; font-weight: 500;">English competency</div>
+                <div style="font-size: 13px; color: var(--mut);">OET pass, dentistry version</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--gold); padding-top: 2px;">02</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="font-size: 15px; font-weight: 500;">ORE Parts 1 &amp; 2</div>
+                <div style="font-size: 13px; color: var(--mut);">Sequenced around sitting availability</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--gold); padding-top: 2px;">03</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="font-size: 15px; font-weight: 500;">Full GDC registration</div>
+                <div style="font-size: 13px; color: var(--mut);">Documents, declarations, timing</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 20px; padding: 20px 0 0;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--gold); padding-top: 2px;">04</div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="font-size: 15px; font-weight: 500;">First UK post</div>
+                <div style="font-size: 13px; color: var(--mut);">Sponsorship &amp; supervised practice</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid var(--line); background: var(--surface);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 80px 32px;">
+          <div style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 40px;">How an engagement works</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;">
+            <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line-strong); padding-top: 24px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--gold);">01 — Assessment</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 600;">Tell us where you stand</div>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--mut); text-wrap: pretty;">A structured, three-minute questionnaire: qualification, GDC status, ORE progress, English test, visa position.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line-strong); padding-top: 24px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--gold);">02 — Analysis</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 600;">Facts first, then narrative</div>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--mut); text-wrap: pretty;">A deterministic rules engine selects your steps from a verified GDC/ORE/visa knowledge base. AI only writes it up — it never invents requirements.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--line-strong); padding-top: 24px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--gold);">03 — Roadmap</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 600;">One sequenced plan</div>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: var(--mut); text-wrap: pretty;">Every step with realistic timelines, held in your dashboard and exportable as a board-quality PDF.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="border-top: 1px solid var(--line);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 56px 32px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink); max-width: 640px; text-wrap: pretty;">Every requirement in your plan is traced to GDC, UKVI and NHS sources, and flagged until reviewed by subject-matter experts.</p>
+          <button onClick="{{ goSignup }}" style="height: 48px; padding: 0 24px; flex-shrink: 0; background: transparent; color: var(--gold); border: 1px solid var(--gold); font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="background: var(--gold-soft);">Start now</button>
+        </div>
+      </section>
+
+      <footer style="border-top: 1px solid var(--line); background: var(--bg);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px; display: flex; justify-content: space-between; gap: 40px; align-items: flex-start;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 28px; height: 28px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; color: var(--gold);">DB</div>
+            <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mut);">DentalBridge · UK Pathway Advisory</div>
+          </div>
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--mut); max-width: 560px; text-wrap: pretty;">DentalBridge is an informational planning tool, not a substitute for official guidance from the GDC, UKVI, or your dental defence organisation. Always verify requirements against official sources before making decisions.</p>
+        </div>
+      </footer>
+    </main>
+  </sc-if>
+
+  <!-- ===== LOGIN / SIGNUP ===== -->
+  <sc-if value="{{ isAuth }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Redesign: Auth" style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 80px 32px;">
+      <div style="width: 420px; background: var(--surface); border: 1px solid var(--line); padding: 40px;">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 24px; border-bottom: 1px solid var(--line);">
+          <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">{{ authEyebrow }}</div>
+          <div style="font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 600;">{{ authTitle }}</div>
+        </div>
+        <div style="padding-top: 24px; display: flex; flex-direction: column; gap: 20px;">
+          <button style="display: flex; width: 100%; align-items: center; justify-content: center; gap: 10px; height: 46px; background: transparent; border: 1px solid var(--line-strong); color: var(--ink); font-family: 'Archivo', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;" style-hover="border-color: var(--gold);">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.27H12v4.3h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.12z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.25 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.44.34-2.09V7.07H2.18A11 11 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.07L5.84 9.91C6.71 7.31 9.14 5.38 12 5.38z"></path></svg>
+            Continue with Google
+          </button>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="flex: 1; height: 1px; background: var(--line);"></div>
+            <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mut);">or</span>
+            <div style="flex: 1; height: 1px; background: var(--line);"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Email</label>
+            <input type="email" style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Password</label>
+            <input type="password" style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+          </div>
+          <button onClick="{{ authSubmit }}" style="height: 48px; width: 100%; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">{{ authCta }}</button>
+          <p style="margin: 0; text-align: center; font-size: 14px; color: var(--mut);">{{ authSwapPrompt }} <a href="#" onClick="{{ authSwap }}" style="color: var(--gold); border-bottom: 1px solid var(--gold);">{{ authSwapLabel }}</a></p>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- ===== QUESTIONNAIRE ===== -->
+  <sc-if value="{{ isQuestionnaire }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Redesign: Questionnaire" style="flex: 1;">
+      <div style="max-width: 1080px; margin: 0 auto; padding: 72px 32px; display: grid; grid-template-columns: 300px 1fr; gap: 72px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 8px; position: sticky; top: 104px;">
+          <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;">Assessment · {{ qStepLabel }}</div>
+          <sc-for list="{{ qSteps }}" as="stp" hint-placeholder-count="4">
+            <div onClick="{{ stp.go }}" style="{{ stp.rowStyle }}">
+              <div style="{{ stp.numStyle }}">{{ stp.num }}</div>
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                <div style="{{ stp.titleStyle }}">{{ stp.title }}</div>
+                <div style="font-size: 12.5px; color: var(--mut);">{{ stp.desc }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background: var(--surface); border: 1px solid var(--line); padding: 40px; display: flex; flex-direction: column; gap: 28px; min-height: 380px; box-sizing: border-box;">
+
+          <sc-if value="{{ qs0 }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600;">Your background</div>
+              <p style="margin: 0; font-size: 14px; color: var(--mut);">Nothing here is shared publicly — it shapes your roadmap only.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Country where you graduated</label>
+              <input style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Graduation year</label>
+                <input type="number" style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Years of clinical experience</label>
+                <input type="number" style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ qs1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600;">English test</div>
+              <p style="margin: 0; font-size: 14px; color: var(--mut);">OET (dentistry) or IELTS Academic both satisfy the GDC.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Status</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                <sc-for list="{{ engOptions }}" as="opt" hint-placeholder-count="3">
+                  <div onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Score, if taken (optional)</label>
+              <input style="height: 46px; width: 100%; box-sizing: border-box; border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); padding: 0 14px; font-size: 15px; font-family: inherit; outline: none;" style-focus="border-color: var(--gold);">
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ qs2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600;">GDC &amp; ORE status</div>
+              <p style="margin: 0; font-size: 14px; color: var(--mut);">Where you are with registration and the Overseas Registration Exam.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">GDC registration</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <sc-for list="{{ gdcOptions }}" as="opt" hint-placeholder-count="4">
+                  <div onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">ORE progress</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <sc-for list="{{ oreOptions }}" as="opt" hint-placeholder-count="4">
+                  <div onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ qs3 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 600;">Preferences</div>
+              <p style="margin: 0; font-size: 14px; color: var(--mut);">This shapes the employment stage of your roadmap.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">NHS or private practice?</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                <sc-for list="{{ prefOptions }}" as="opt" hint-placeholder-count="3">
+                  <div onClick="{{ opt.pick }}" style="{{ opt.style }}">{{ opt.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div onClick="{{ toggleVisa }}" style="display: flex; align-items: center; gap: 12px; cursor: pointer; border: 1px solid var(--line-strong); padding: 16px;">
+              <span style="{{ visaBoxStyle }}"></span>
+              <span style="font-size: 14.5px;">I will need visa sponsorship to work in the UK</span>
+            </div>
+          </sc-if>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line);">
+            <button onClick="{{ qBack }}" style="{{ backStyle }}">Back</button>
+            <button onClick="{{ qNext }}" style="height: 48px; padding: 0 28px; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">{{ qNextLabel }}</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- ===== DASHBOARD ===== -->
+  <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Redesign: Dashboard" style="flex: 1;">
+      <div style="max-width: 880px; margin: 0 auto; padding: 72px 32px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid var(--line-strong);">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">Client dashboard</div>
+            <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 600;">Your engagements</h1>
+            <p style="margin: 0; font-size: 14px; color: var(--mut);">a.sharma@gmail.com</p>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button onClick="{{ goQuestionnaire }}" style="height: 44px; padding: 0 20px; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">New roadmap</button>
+            <button onClick="{{ goLanding }}" style="height: 44px; padding: 0 20px; background: transparent; color: var(--mut); border: 1px solid var(--line-strong); font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="color: var(--ink);">Sign out</button>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div onClick="{{ goResults }}" style="display: grid; grid-template-columns: 140px 1fr auto; gap: 32px; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--line); cursor: pointer;" style-hover="background: var(--gold-soft);">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600;">8 Jul 2026</div>
+              <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);">Current</div>
+            </div>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--mut); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">OET passed and ORE Part 1 behind you. Remaining path: ORE Part 2, full GDC registration, and a sponsored first role. Estimated 28–62 weeks.</p>
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: var(--gold);">→</div>
+          </div>
+          <div onClick="{{ goResults }}" style="display: grid; grid-template-columns: 140px 1fr auto; gap: 32px; align-items: center; padding: 28px 0; border-bottom: 1px solid var(--line); cursor: pointer;" style-hover="background: var(--gold-soft);">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600;">22 May 2026</div>
+              <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mut);">Archived</div>
+            </div>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--mut); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Early stage: priority was booking OET and preparing for ORE Part 1, with visa groundwork running in parallel.</p>
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: var(--gold);">→</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- ===== RESULTS ===== -->
+  <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+    <main data-screen-label="Redesign: Results" style="flex: 1;">
+      <div style="max-width: 880px; margin: 0 auto; padding: 72px 32px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">Engagement report · 8 Jul 2026</div>
+            <h1 style="margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 600;">Your UK dental career roadmap</h1>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <button onClick="{{ goDashboard }}" style="height: 44px; padding: 0 20px; background: transparent; color: var(--mut); border: 1px solid var(--line-strong); font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="color: var(--ink);">Dashboard</button>
+            <button style="height: 44px; padding: 0 20px; background: var(--gold); color: var(--gold-ink); border: none; font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; cursor: pointer;" style-hover="filter: brightness(1.07);">Download PDF</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: 1fr 240px;">
+          <div style="padding: 32px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--line);">
+            <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">Where you stand</div>
+            <p style="margin: 0; font-size: 15.5px; line-height: 1.65;">An experienced dentist trained in India, with a valid OET pass and ORE Part 1 complete. Your remaining path runs through ORE Part 2, full GDC registration, and a sponsored first role.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); font-weight: 500;">Key gaps</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="border: 1px solid var(--line-strong); padding: 6px 12px; font-size: 13px; color: var(--ink);">ORE Part 2 not yet passed</span>
+                <span style="border: 1px solid var(--line-strong); padding: 6px 12px; font-size: 13px; color: var(--ink);">No GDC registration</span>
+                <span style="border: 1px solid var(--line-strong); padding: 6px 12px; font-size: 13px; color: var(--ink);">Visa sponsorship required</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 32px; display: flex; flex-direction: column; justify-content: center; gap: 6px; background: var(--gold-soft);">
+            <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">Estimated timeline</div>
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 44px; font-weight: 600; line-height: 1;">28–62</div>
+            <div style="font-size: 13px; color: var(--mut);">weeks · some steps run in parallel</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 48px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">The plan, step by step</div>
+        <div style="margin-top: 24px; display: flex; flex-direction: column;">
+          <sc-for list="{{ planSteps }}" as="ps" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: 64px 1fr; gap: 24px;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0;">
+                <div style="width: 40px; height: 40px; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--gold); background: var(--bg); flex-shrink: 0;">{{ ps.num }}</div>
+                <div style="{{ ps.railStyle }}"></div>
+              </div>
+              <div style="padding-bottom: 36px; display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600;">{{ ps.title }}</div>
+                  <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 4px 10px; flex-shrink: 0;">{{ ps.category }}</span>
+                </div>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--mut); text-wrap: pretty;">{{ ps.narrative }}</p>
+                <div style="font-size: 12.5px; color: var(--mut);">Typical duration: {{ ps.duration }} · <span style="color: var(--gold);">not yet SME-verified</span></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top: 16px; padding-top: 28px; border-top: 1px solid var(--line);">
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--mut); max-width: 640px; text-wrap: pretty;">This roadmap is generated from a structured knowledge base with AI narration. It is informational and does not replace official GDC, UKVI, or NHS guidance — always verify current requirements directly with those bodies.</p>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <!-- ===== PROTOTYPE SCREEN SWITCHER ===== -->
+  <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 50; display: flex; gap: 4px; background: var(--surface2); border: 1px solid var(--line-strong); padding: 5px; box-shadow: 0 8px 24px oklch(0 0 0 / 0.25);">
+    <sc-for list="{{ navPills }}" as="pill" hint-placeholder-count="6">
+      <button onClick="{{ pill.go }}" style="{{ pill.style }}">{{ pill.label }}</button>
+    </sc-for>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;tsType&quot;:&quot;\&quot;dark\&quot; | \&quot;light\&quot;&quot;,&quot;section&quot;:&quot;Appearance&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;landing&quot;,&quot;options&quot;:[&quot;landing&quot;,&quot;login&quot;,&quot;signup&quot;,&quot;questionnaire&quot;,&quot;dashboard&quot;,&quot;results&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+class Component extends DCLogic {
+  state = {
+    theme: (this.props && this.props.defaultTheme) || "dark",
+    screen: (this.props && this.props.startScreen) || "landing",
+    qStep: 0,
+    eng: "none",
+    gdc: "No GDC registration",
+    ore: "Not started",
+    pref: "Either",
+    visa: false,
+  };
+
+  go(screen) {
+    this.setState({ screen });
+    const el = document.scrollingElement || document.documentElement;
+    el.scrollTop = 0;
+  }
+
+  optStyle(active) {
+    return {
+      border: active ? "1px solid var(--gold)" : "1px solid var(--line-strong)",
+      background: active ? "var(--gold-soft)" : "transparent",
+      color: active ? "var(--gold)" : "var(--ink)",
+      padding: "14px 16px",
+      fontSize: "14px",
+      fontWeight: active ? 600 : 400,
+      cursor: "pointer",
+      textAlign: "center",
+      userSelect: "none",
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const screen = s.screen;
+    const isLogin = screen === "login";
+    const isSignup = screen === "signup";
+
+    const stepTitles = [
+      { title: "Background", desc: "Qualification & experience" },
+      { title: "English test", desc: "OET or IELTS status" },
+      { title: "GDC & ORE", desc: "Registration & exam progress" },
+      { title: "Preferences", desc: "NHS, private, visa" },
+    ];
+    const qSteps = stepTitles.map((t, i) => {
+      const active = s.qStep === i;
+      const done = s.qStep > i;
+      return {
+        num: done ? "✓" : "0" + (i + 1),
+        title: t.title,
+        desc: t.desc,
+        go: () => this.setState({ qStep: i }),
+        rowStyle: {
+          display: "flex",
+          gap: "16px",
+          padding: "16px 14px",
+          cursor: "pointer",
+          borderLeft: active ? "2px solid var(--gold)" : "2px solid var(--line)",
+          background: active ? "var(--gold-soft)" : "transparent",
+        },
+        numStyle: {
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: "13px",
+          paddingTop: "2px",
+          color: active || done ? "var(--gold)" : "var(--mut)",
+        },
+        titleStyle: {
+          fontSize: "15px",
+          fontWeight: active ? 600 : 500,
+          color: active ? "var(--ink)" : "var(--mut)",
+        },
+      };
+    });
+
+    const mkOptions = (labels, key) =>
+      labels.map((label) => ({
+        label,
+        pick: () => this.setState({ [key]: label }),
+        style: this.optStyle(s[key] === label),
+      }));
+
+    const screens = [
+      ["landing", "Landing"],
+      ["signup", "Sign up"],
+      ["login", "Log in"],
+      ["questionnaire", "Assessment"],
+      ["results", "Roadmap"],
+      ["dashboard", "Dashboard"],
+    ];
+    const navPills = screens.map(([id, label]) => ({
+      label,
+      go: () => this.go(id),
+      style: {
+        height: "34px",
+        padding: "0 14px",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "'Archivo', sans-serif",
+        fontSize: "12px",
+        letterSpacing: "0.06em",
+        background: screen === id ? "var(--gold)" : "transparent",
+        color: screen === id ? "var(--gold-ink)" : "var(--mut)",
+        fontWeight: screen === id ? 600 : 500,
+      },
+    }));
+
+    const planSteps = [
+      { num: "01", title: "Book and pass ORE Part 2", category: "Exams", duration: "12–24 weeks", narrative: "With Part 1 passed, secure an ORE Part 2 sitting as early as possible — places are limited and released in batches. Focus preparation on the OSCE stations and the dental manikin exercise." },
+      { num: "02", title: "Apply for full GDC registration", category: "Registration", duration: "8–12 weeks", narrative: "Once ORE Part 2 is passed, submit your GDC application with qualification documents, English-language evidence, and health and character declarations." },
+      { num: "03", title: "Secure Health & Care Worker visa sponsorship", category: "Visa", duration: "4–12 weeks", narrative: "Target practices holding a sponsor licence. Your certificate of sponsorship can run in parallel with the job search once GDC registration is confirmed." },
+      { num: "04", title: "Find your first UK dental role", category: "Employment", duration: "4–14 weeks", narrative: "Apply for NHS performer or private associate roles. Most internationally trained dentists begin with a period of supervised practice — factor this into salary and location decisions." },
+    ].map((p, i, arr) => ({
+      ...p,
+      railStyle: {
+        width: "1px",
+        flex: 1,
+        background: i === arr.length - 1 ? "transparent" : "var(--line-strong)",
+      },
+    }));
+
+    return {
+      theme: s.theme,
+      themeLabel: s.theme === "dark" ? "Dark" : "Light",
+      toggleTheme: () => this.setState({ theme: s.theme === "dark" ? "light" : "dark" }),
+
+      isLanding: screen === "landing",
+      isAuth: isLogin || isSignup,
+      isQuestionnaire: screen === "questionnaire",
+      isDashboard: screen === "dashboard",
+      isResults: screen === "results",
+
+      goLanding: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("landing"); },
+      goLogin: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("login"); },
+      goSignup: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go("signup"); },
+      goQuestionnaire: () => this.go("questionnaire"),
+      goDashboard: () => this.go("dashboard"),
+      goResults: () => this.go("results"),
+
+      authEyebrow: isLogin ? "Welcome back" : "New engagement",
+      authTitle: isLogin ? "Log in" : "Create your account",
+      authCta: isLogin ? "Log in" : "Begin assessment",
+      authSubmit: () => this.go(isLogin ? "dashboard" : "questionnaire"),
+      authSwapPrompt: isLogin ? "No account yet?" : "Already have an account?",
+      authSwapLabel: isLogin ? "Sign up" : "Log in",
+      authSwap: (e) => { if (e && e.preventDefault) e.preventDefault(); this.go(isLogin ? "signup" : "login"); },
+
+      qSteps,
+      qStepLabel: "Step " + (s.qStep + 1) + " of 4",
+      qs0: s.qStep === 0,
+      qs1: s.qStep === 1,
+      qs2: s.qStep === 2,
+      qs3: s.qStep === 3,
+      qBack: () => { if (s.qStep > 0) this.setState({ qStep: s.qStep - 1 }); },
+      qNext: () => {
+        if (s.qStep < 3) this.setState({ qStep: s.qStep + 1 });
+        else this.go("results");
+      },
+      qNextLabel: s.qStep === 3 ? "Generate my roadmap" : "Continue",
+      backStyle: {
+        height: "48px",
+        padding: "0 24px",
+        background: "transparent",
+        color: s.qStep === 0 ? "var(--line)" : "var(--mut)",
+        border: "1px solid " + (s.qStep === 0 ? "var(--line)" : "var(--line-strong)"),
+        fontFamily: "'Archivo', sans-serif",
+        fontSize: "13px",
+        fontWeight: 500,
+        letterSpacing: "0.10em",
+        textTransform: "uppercase",
+        cursor: s.qStep === 0 ? "default" : "pointer",
+        pointerEvents: s.qStep === 0 ? "none" : "auto",
+      },
+
+      engOptions: mkOptions(["Not booked yet", "Booked", "Passed"], "eng").map((o, i) => {
+        const labels = ["none", "booked", "passed"];
+        return { ...o, pick: () => this.setState({ eng: labels[i] }), style: this.optStyle(s.eng === labels[i]) };
+      }),
+      gdcOptions: mkOptions(["No GDC registration", "Provisional", "Full registration", "Lapsed"], "gdc"),
+      oreOptions: mkOptions(["Not started", "Part 1 passed", "Part 2 passed", "Exempt from ORE"], "ore"),
+      prefOptions: mkOptions(["NHS", "Private", "Either"], "pref"),
+      toggleVisa: () => this.setState({ visa: !s.visa }),
+      visaBoxStyle: {
+        width: "18px",
+        height: "18px",
+        flexShrink: 0,
+        boxSizing: "border-box",
+        border: s.visa ? "1px solid var(--gold)" : "1px solid var(--line-strong)",
+        background: s.visa ? "var(--gold)" : "transparent",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "var(--gold-ink)",
+        fontSize: "13px",
+        fontWeight: 700,
+      },
+
+      planSteps,
+      navPills,
+    };
+  }
+}
+</script>
+</body>
+</html>

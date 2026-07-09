@@ -8,8 +8,6 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { GoogleSignInButton } from "@/components/google-signin-button";
 
 export default function SignupPage() {
@@ -39,19 +37,26 @@ export default function SignupPage() {
 
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-20">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Create your account</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <GoogleSignInButton next="/questionnaire" />
-          <div className="my-4 flex items-center gap-3">
-            <Separator className="flex-1" />
-            <span className="text-xs text-muted-foreground">or</span>
-            <Separator className="flex-1" />
+      <div className="w-full max-w-[420px] border border-line bg-surface p-10">
+        <div className="flex flex-col gap-2 border-b border-line pb-6">
+          <div className="text-[11px] tracking-[0.2em] text-gold uppercase">
+            New engagement
           </div>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+          <div className="font-heading text-[26px] font-semibold">
+            Create your account
+          </div>
+        </div>
+        <div className="flex flex-col gap-5 pt-6">
+          <GoogleSignInButton next="/questionnaire" />
+          <div className="flex items-center gap-3.5">
+            <div className="h-px flex-1 bg-line" />
+            <span className="text-[11px] tracking-[0.14em] text-mut uppercase">
+              or
+            </span>
+            <div className="h-px flex-1 bg-line" />
+          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -61,7 +66,7 @@ export default function SignupPage() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -72,18 +77,18 @@ export default function SignupPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating account..." : "Sign up"}
+            <Button type="submit" size="form" className="w-full" disabled={loading}>
+              {loading ? "Creating account..." : "Begin assessment"}
             </Button>
           </form>
-          <p className="mt-4 text-center text-sm text-muted-foreground">
+          <p className="text-center text-sm text-mut">
             Already have an account?{" "}
-            <Link href="/login" className="underline">
+            <Link href="/login" className="border-b border-gold text-gold">
               Log in
             </Link>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </main>
   );
 }
