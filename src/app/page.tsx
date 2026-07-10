@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { BrandMark } from "@/components/brand-mark";
 
 const SAMPLE_STEPS = [
   {
@@ -152,18 +151,6 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
-
-      <footer className="border-t border-line bg-background">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-8 px-8 py-10 sm:flex-row sm:justify-between">
-          <BrandMark variant="footer" />
-          <p className="max-w-[560px] text-pretty text-[12.5px] leading-[1.6] text-mut">
-            DentalBridge is an informational planning tool, not a substitute
-            for official guidance from the GDC, UKVI, or your dental defence
-            organisation. Always verify requirements against official
-            sources before making decisions.
-          </p>
-        </div>
-      </footer>
     </main>
   );
 }
