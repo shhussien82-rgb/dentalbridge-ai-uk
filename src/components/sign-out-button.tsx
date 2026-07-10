@@ -2,9 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import type { VariantProps } from "class-variance-authority";
 
-export function SignOutButton() {
+export function SignOutButton({
+  size = "action",
+}: {
+  size?: VariantProps<typeof buttonVariants>["size"];
+}) {
   const router = useRouter();
 
   async function handleSignOut() {
@@ -15,7 +20,7 @@ export function SignOutButton() {
   }
 
   return (
-    <Button variant="outline" size="action" onClick={handleSignOut}>
+    <Button variant="outline" size={size} onClick={handleSignOut}>
       Sign out
     </Button>
   );

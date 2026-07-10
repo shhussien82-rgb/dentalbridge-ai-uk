@@ -3,6 +3,8 @@ import { Space_Grotesk, Archivo } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { createClient } from "@/lib/supabase/server";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -23,11 +25,16 @@ export const metadata: Metadata = {
     "AI-powered, personalized step-by-step roadmaps for foreign-trained dentists pursuing GDC registration and a UK dental career.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang="en"
@@ -41,8 +48,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SiteHeader />
+          <SiteHeader userEmail={user?.email ?? null} />
           {children}
+          <SiteFooter />
           <Toaster />
         </ThemeProvider>
       </body>
